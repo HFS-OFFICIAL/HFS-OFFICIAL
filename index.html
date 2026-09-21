@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HFS_official ✦ Gen Z Web Developer</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* -------------------------------------------------------------------------- */
+        /* CSS VARIABLES & THEMING (SOFT CUTEY AESTHETIC DEFAULT)                    */
+        /* -------------------------------------------------------------------------- */
+        :root {
+            /* Base Colors */
+            --bg-primary: #fff8f6;
+            --bg-secondary: #fff0ed;
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(255, 218, 214, 0.8);
+            
+            /* Text Colors */
+            --text-main: #33272a;
+            --text-muted: #6e5c62;
+            --text-heading: #23191c;
+            
+            /* Accents */
+            --accent-pink: #ff8fa3;
+            --accent-rose: #ff4d6d;
+            --accent-peach: #ffb5a7;
+            --accent-soft-purple: #c8b6ff;
+            --accent-mint: #b8e0d2;
+            
+            /* Gradients & Shadows */
+            --gradient-accent: linear-gradient(135deg, #ff8fa3, #c8b6ff);
+            --badge-bg: rgba(255, 143, 163, 0.15);
+            --shadow-soft: 0 10px 30px -5px rgba(255, 143, 163, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(255, 143, 163, 0.28);
+            
+            /* Aura Mesh Glows */
+            --aura-1: rgba(255, 181, 167, 0.45);
+            --aura-2: rgba(200, 182, 255, 0.40);
+            --aura-3: rgba(255, 143, 163, 0.35);
+
+            /* Fonts & Transitions */
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* BASE & RESET STYLES                                                        */
+        /* -------------------------------------------------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+            transition: var(--transition-smooth);
+        }
+
+        /* Custom Glowing Cursor Trailing Effect */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-rose);
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-outline {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--accent-pink);
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+            background: rgba(255, 143, 163, 0.08);
+        }
+
+        /* Pinterest Style Background Noise & Aura Gradient Mesh */
+        .bg-mesh-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aura-node {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.8;
+            animation: floatAura 18s ease-in-out infinite alternate;
+        }
+
+        .aura-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--aura-1);
+            top: -100px;
+            left: -100px;
+        }
+
+        .aura-2 {
+            width: 600px;
+            height: 600px;
+            background: var(--aura-2);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        .aura-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--aura-3);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -9s;
+        }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.15); }
+            100% { transform: translate(-40px, 80px) scale(0.9); }
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.035;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* LAYOUT & CONTAINERS                                                        */
+        /* -------------------------------------------------------------------------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* FLOATING GLASS NAVIGATION BAR                                              */
+        /* -------------------------------------------------------------------------- */
+        header {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow-soft);
+            width: 100%;
+            max-width: 900px;
+            transition: var(--transition-smooth);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-heading);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-badge {
+            background: var(--gradient-accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text-heading);
+            background: var(--badge-bg);
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* HERO SECTION                                                               */
+        /* -------------------------------------------------------------------------- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--badge-bg);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-rose);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-heading);
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 520px;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(255, 143, 163, 0.4);
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px -5px rgba(255, 143, 163, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--card-bg);
+            color: var(--text-heading);
+            border: 1px solid var(--card-border);
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            transform: translateY(-2px);
+            border-color: var(--accent-pink);
+        }
+
+        /* Aesthetic Profile / Glass Card */
+        .hero-card-container {
+            position: relative;
+        }
+
+        .hero-glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-glass-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 143, 163, 0.3);
+        }
+
+        .profile-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .profile-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(184, 224, 210, 0.3);
+            color: #2b7a62;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-top: 0.4rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #2b7a62;
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.6);
+            border-left: 3px solid var(--accent-pink);
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* ABOUT SECTION (WHO'S BEHIND THIS?)                                        */
+        /* -------------------------------------------------------------------------- */
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-rose);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-heading);
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 218, 214, 0.5);
+        }
+
+        .highlight-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--badge-bg);
+            color: var(--accent-rose);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* FEATURED CREATION (PROJECT SHOWCASE)                                       */
+        /* -------------------------------------------------------------------------- */
+        .project-showcase {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--gradient-accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        .project-content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .project-info h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 0.8rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--card-border);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Interactive Tabs for How I Built This */
+        .tab-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.8rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-rose);
+            background: var(--badge-bg);
+        }
+
+        .tab-pane {
+            display: none;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .project-preview-box {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px dashed var(--accent-pink);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* SKILLS DASHBOARD                                                           */
+        /* -------------------------------------------------------------------------- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            padding: 1.8rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-pink);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: var(--gradient-accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .skill-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-heading);
+        }
+
+        .skill-micro-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-rose);
+            background: var(--badge-bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* CONTACT SECTION (SAY HI!)                                                 */
+        /* -------------------------------------------------------------------------- */
+        .contact-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 36px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pill-selection {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 1.8rem 0;
+        }
+
+        .option-pill {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--card-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .option-pill:hover, .option-pill.active {
+            background: var(--gradient-accent);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* FOOTER                                                                     */
+        /* -------------------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 3rem;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* RESPONSIVE DESIGN                                                          */
+        /* -------------------------------------------------------------------------- */
+        @media (max-width: 868px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.6rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .about-card {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 0.6rem;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Glowing Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Pinterest Style Background Noise & Aura Gradient Mesh -->
+    <div class="bg-mesh-container">
+        <div class="aura-node aura-1"></div>
+        <div class="aura-node aura-2"></div>
+        <div class="aura-node aura-3"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Floating Glass Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">
+                HFS_official
+                <span class="logo-badge">GEN Z</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">The Space ✦</a></li>
+                <li><a href="#about" class="nav-link">Who's Behind This? 🧋</a></li>
+                <li><a href="#projects" class="nav-link">Cool Stuff I Built ⚡</a></li>
+                <li><a href="#contact" class="nav-link">Say Hi! 💌</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text-content">
+                        <div class="hero-pill">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            Aesthetic Web Creator
+                        </div>
+                        <h1 class="hero-title">
+                            Bringing Fresh <span>Gen Z Energy</span> To Web Creation.
+                        </h1>
+                        <p class="hero-description">
+                            Hi! I'm <strong>HFS_official</strong>. I realized our generation needed something different, so I decided to rewrite how web development feels—combining AI power with cute aesthetic designs.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="#projects" class="btn-primary">
+                                Explore My Work <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="#contact" class="btn-secondary">
+                                Let's Chat 💬
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Profile / Aesthetic Glass Card -->
+                    <div class="hero-card-container">
+                        <div class="hero-glass-card">
+                            <div class="profile-header">
+                                <div class="avatar-box">
+                                    ✨
+                                </div>
+                                <div class="profile-info">
+                                    <h3>HFS_official</h3>
+                                    <p>AI-Driven Web Creator</p>
+                                    <div class="status-badge">
+                                        <span class="status-dot"></span> Available for Web Projects
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quote-box">
+                                "If everything around us is evolving, web development should also get a fresh new vibe!" 🌸
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (Who's Behind This?) -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">WHO'S BEHIND THIS? 🧋</span>
+                    <h2 class="section-title">A New Way To Build Websites</h2>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-text">
+                        <p>
+                            Main aik nyi web developer hoon aur mera manna hai ke aaj kal ki websites boring nahi honi chahiye. Jab har cheez badal rahi hai, toh web development mein bhi kuch naya aur aesthetic aana chahiye!
+                        </p>
+                        <p>
+                            Main AI tools aur modern prompt workflows ka use karke pixel-perfect, interactive, aur aesthetic websites design karti hoon.
+                        </p>
+                    </div>
+
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">⚡</div>
+                            <div>
+                                <h4>Gen Z Aesthetic Focus</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Cute colors, smooth micro-interactions, aur Pinterest-inspired design layout.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🤖</div>
+                            <div>
+                                <h4>AI-Powered Workflow</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Smart coding execution using cutting-edge AI prompts & developer logic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Cool Stuff I Built ⚡) -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">COOL STUFF I BUILT ⚡</span>
+                    <h2 class="section-title">Featured Creation</h2>
+                </div>
+
+                <div class="project-showcase">
+                    <span class="project-badge">FEATURED SITE ✨</span>
+
+                    <div class="project-content-grid">
+                        <div class="project-info">
+                            <h3>Visa Consultant Web Portal</h3>
+                            
+                            <div class="project-tags">
+                                <span class="tech-pill">HTML5</span>
+                                <span class="tech-pill">CSS3</span>
+                                <span class="tech-pill">GitHub Pages</span>
+                                <span class="tech-pill">Client Project</span>
+                            </div>
+
+                            <!-- Interactive Tabs -->
+                            <div class="tab-buttons">
+                                <button class="tab-btn active" onclick="openTab(event, 'tab-overview')">Overview</button>
+                                <button class="tab-btn" onclick="openTab(event, 'tab-built')">How I Built This 💡</button>
+                            </div>
+
+                            <div id="tab-overview" class="tab-pane active">
+                                <p>This is a professional and clean website built for a Visa Consultancy service. It highlights client services, documentation guidelines, and contact details in a simple layout.</p>
+                            </div>
+
+                            <div id="tab-built" class="tab-pane">
+                                <p>Built with clean responsive code, structured navigation, and hosted live directly on GitHub Pages for high performance.</p>
+                            </div>
+
+                            <div class="project-preview-box" style="margin-top: 1.5rem;">
+                                <p style="font-weight: 600; color: var(--text-heading);">Want to check out the live site?</p>
+                                <a href="https://naeem-shehzad.github.io/naeem-shehzad/" target="_blank" class="btn-primary">
+                                    Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">SKILLSET ✦</span>
+                    <h2 class="section-title">My Tech & Design Toolkit</h2>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+                        <div class="skill-title">HTML5</div>
+                        <span class="skill-micro-badge">Pixel Perfect</span>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+                        <div class="skill-title">CSS3 & Styling</div>
+                        <span class="skill-micro-badge">Aesthetic Magic</span>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                        <div class="skill-title">JavaScript</div>
+                        <span class="skill-micro-badge">Interactivity</span>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-robot"></i></div>
+                        <div class="skill-title">AI Coding Workflow</div>
+                        <span class="skill-micro-badge">Smart Creator</span>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+                        <div class="skill-title">Git & GitHub</div>
+                        <span class="skill-micro-badge">Web Deployment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Say Hi! 💌) -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-card">
+                    <span class="section-tag">SAY HI! 💌</span>
+                    <h2 class="section-title" style="margin-bottom: 0.8rem;">Let's Create Something Cute Together</h2>
+                    <p style="color: var(--text-muted);">Select what you'd like to chat about:</p>
+
+                    <div class="pill-selection">
+                        <div class="option-pill active" onclick="selectPill(this)">I need a website for my business 🚀</div>
+                        <div class="option-pill" onclick="selectPill(this)">Just saying hi! ☕</div>
+                        <div class="option-pill" onclick="selectPill(this)">Let me hire you 💼</div>
+                    </div>
+
+                    <a href="mailto:naeemdte12@gmail.com" class="btn-primary" style="margin-top: 1rem;">
+                        Send Me An Email <i class="fa-solid fa-paper-plane"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Designed & Built with ❤️ by <strong>HFS_official</strong> &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        /* Custom Cursor Animation */
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 300, fill: "forwards" });
+        });
+
+        /* Project Tabs Switcher */
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-pane");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        /* Contact Pill Selection */
+        function selectPill(element) {
+            let pills = document.getElementsByClassName("option-pill");
+            for (let i = 0; i < pills.length; i++) {
+                pills[i].classList.remove("active");
+            }
+            element.classList.add("active");
+        }
+    </script>
+</body>
+</html>
