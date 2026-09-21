@@ -1,58 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HFS_official ✦ Gen Z Web Developer</title>
+    <title>HFS_official ✦ Web Developer & Designer</title>
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* -------------------------------------------------------------------------- */
-        /* CSS VARIABLES & THEMING (SOFT CUTEY AESTHETIC DEFAULT)                    */
+        /* CSS VARIABLES & THEMING (PINTEREST FLORAL AESTHETIC DEFAULT)               */
         /* -------------------------------------------------------------------------- */
         :root {
-            /* Base Colors */
-            --bg-primary: #fff8f6;
-            --bg-secondary: #fff0ed;
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --card-border: rgba(255, 218, 214, 0.8);
+            /* Base Colors - Soft Floral Cream & Blush */
+            --bg-primary: #fdfaf6;
+            --bg-secondary: #f9f0ea;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(230, 210, 205, 0.8);
             
             /* Text Colors */
-            --text-main: #33272a;
-            --text-muted: #6e5c62;
-            --text-heading: #23191c;
+            --text-main: #3d3435;
+            --text-muted: #736365;
+            --text-heading: #241d1e;
             
             /* Accents */
-            --accent-pink: #ff8fa3;
-            --accent-rose: #ff4d6d;
-            --accent-peach: #ffb5a7;
-            --accent-soft-purple: #c8b6ff;
-            --accent-mint: #b8e0d2;
+            --accent-pink: #e8a598;
+            --accent-rose: #d9777f;
+            --accent-sage: #a8bba2;
+            --accent-soft-purple: #c5b3c9;
             
             /* Gradients & Shadows */
-            --gradient-accent: linear-gradient(135deg, #ff8fa3, #c8b6ff);
-            --badge-bg: rgba(255, 143, 163, 0.15);
-            --shadow-soft: 0 10px 30px -5px rgba(255, 143, 163, 0.15);
-            --shadow-hover: 0 20px 40px -10px rgba(255, 143, 163, 0.28);
+            --gradient-accent: linear-gradient(135deg, #e8a598, #c5b3c9);
+            --badge-bg: rgba(232, 165, 152, 0.18);
+            --shadow-soft: 0 10px 30px -5px rgba(217, 119, 127, 0.12);
+            --shadow-hover: 0 20px 40px -10px rgba(217, 119, 127, 0.22);
             
-            /* Aura Mesh Glows */
-            --aura-1: rgba(255, 181, 167, 0.45);
-            --aura-2: rgba(200, 182, 255, 0.40);
-            --aura-3: rgba(255, 143, 163, 0.35);
-
-            /* Fonts & Transitions */
+            /* Fonts */
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* BASE & RESET STYLES                                                        */
-        /* -------------------------------------------------------------------------- */
+        /* Dark Minimal Theme */
+        body.theme-dark {
+            --bg-primary: #181516;
+            --bg-secondary: #221d1e;
+            --card-bg: rgba(35, 29, 30, 0.85);
+            --card-border: rgba(70, 58, 60, 0.8);
+            --text-main: #e6dedf;
+            --text-muted: #ab9e9f;
+            --text-heading: #ffffff;
+            --badge-bg: rgba(219, 123, 131, 0.25);
+            --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -68,109 +75,46 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             overflow-x: hidden;
-            position: relative;
             line-height: 1.6;
             transition: var(--transition-smooth);
+            position: relative;
         }
 
-        /* Custom Glowing Cursor Trailing Effect */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-rose);
-            position: fixed;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease;
-        }
-
-        .cursor-outline {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--accent-pink);
-            position: fixed;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
-            background: rgba(255, 143, 163, 0.08);
-        }
-
-        /* Pinterest Style Background Noise & Aura Gradient Mesh */
-        .bg-mesh-container {
+        /* Pinterest Floral Aesthetic Background Pattern */
+        .floral-bg-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -2;
+            pointer-events: none;
             overflow: hidden;
-            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(232, 165, 152, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 187, 162, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(197, 179, 201, 0.12) 0%, transparent 50%);
         }
 
-        .aura-node {
+        /* Subtle SVG Flower Illustrations Floating in Background */
+        .flower-icon {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.8;
-            animation: floatAura 18s ease-in-out infinite alternate;
-        }
-
-        .aura-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--aura-1);
-            top: -100px;
-            left: -100px;
-        }
-
-        .aura-2 {
-            width: 600px;
-            height: 600px;
-            background: var(--aura-2);
-            bottom: -150px;
-            right: -100px;
-            animation-delay: -5s;
-        }
-
-        .aura-3 {
-            width: 400px;
-            height: 400px;
-            background: var(--aura-3);
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -9s;
-        }
-
-        @keyframes floatAura {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 40px) scale(1.15); }
-            100% { transform: translate(-40px, 80px) scale(0.9); }
-        }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            opacity: 0.035;
+            opacity: 0.12;
+            color: var(--accent-rose);
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: floatFlower 20s infinite ease-in-out alternate;
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* LAYOUT & CONTAINERS                                                        */
-        /* -------------------------------------------------------------------------- */
+        .flower-1 { top: 8%; left: 5%; font-size: 8rem; animation-delay: 0s; }
+        .flower-2 { bottom: 12%; right: 6%; font-size: 10rem; animation-delay: -5s; }
+        .flower-3 { top: 45%; right: 10%; font-size: 6rem; animation-delay: -10s; }
+        .flower-4 { bottom: 35%; left: 8%; font-size: 7rem; animation-delay: -15s; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-30px) rotate(15deg); }
+        }
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -179,11 +123,10 @@
 
         section {
             padding: 6rem 0;
-            position: relative;
         }
 
         /* -------------------------------------------------------------------------- */
-        /* FLOATING GLASS NAVIGATION BAR                                              */
+        /* FLOATING NAVIGATION BAR WITH THEME SWITCHER                                 */
         /* -------------------------------------------------------------------------- */
         header {
             position: fixed;
@@ -202,20 +145,18 @@
             justify-content: space-between;
             background: var(--card-bg);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
             padding: 0.75rem 1.8rem;
             border-radius: 50px;
             box-shadow: var(--shadow-soft);
             width: 100%;
-            max-width: 900px;
-            transition: var(--transition-smooth);
+            max-width: 950px;
         }
 
         .logo {
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-heading);
             text-decoration: none;
             display: flex;
@@ -226,43 +167,72 @@
         .logo-badge {
             background: var(--gradient-accent);
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             padding: 0.2rem 0.6rem;
             border-radius: 20px;
-            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
             align-items: center;
         }
 
-        .nav-link {
-            text-decoration: none;
+        .nav-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-body);
             color: var(--text-muted);
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition-smooth);
-            padding: 0.4rem 0.8rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.5rem 0.9rem;
             border-radius: 20px;
+            transition: var(--transition-smooth);
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
 
-        .nav-link:hover {
+        .nav-btn:hover {
             color: var(--text-heading);
             background: var(--badge-bg);
-            transform: translateY(-2px);
+        }
+
+        /* Theme Controls (Professional Names) */
+        .theme-switcher {
+            display: flex;
+            gap: 0.4rem;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 0.25rem;
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .theme-btn.active {
+            background: var(--card-bg);
+            color: var(--text-heading);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         /* -------------------------------------------------------------------------- */
         /* HERO SECTION                                                               */
         /* -------------------------------------------------------------------------- */
         .hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             padding-top: 8rem;
@@ -291,7 +261,7 @@
 
         .hero-title {
             font-family: var(--font-heading);
-            font-size: 3.5rem;
+            font-size: 3.4rem;
             font-weight: 800;
             line-height: 1.15;
             color: var(--text-heading);
@@ -300,23 +270,17 @@
         }
 
         .hero-title span {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-rose);
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
             max-width: 520px;
-        }
-
-        .hero-cta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
         }
 
         .btn-primary {
@@ -330,58 +294,30 @@
             font-weight: 700;
             font-size: 0.95rem;
             text-decoration: none;
-            box-shadow: 0 10px 25px -5px rgba(255, 143, 163, 0.4);
+            box-shadow: var(--shadow-soft);
             transition: var(--transition-smooth);
             border: none;
             cursor: pointer;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px -5px rgba(255, 143, 163, 0.5);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: var(--card-bg);
-            color: var(--text-heading);
-            border: 1px solid var(--card-border);
-            padding: 0.9rem 1.8rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            transform: translateY(-2px);
-            border-color: var(--accent-pink);
-        }
-
-        /* Aesthetic Profile / Glass Card */
-        .hero-card-container {
-            position: relative;
-        }
-
+        /* Glass Profile Card */
         .hero-glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
             border-radius: 32px;
             padding: 2.2rem;
             box-shadow: var(--shadow-soft);
-            position: relative;
-            z-index: 2;
             transition: var(--transition-smooth);
         }
 
         .hero-glass-card:hover {
-            transform: translateY(-8px) rotate(1deg);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
         }
 
@@ -393,21 +329,20 @@
         }
 
         .avatar-box {
-            width: 70px;
-            height: 70px;
-            border-radius: 22px;
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
             background: var(--gradient-accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: white;
-            box-shadow: 0 8px 20px rgba(255, 143, 163, 0.3);
         }
 
         .profile-info h3 {
             font-family: var(--font-heading);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-heading);
         }
@@ -415,48 +350,10 @@
         .profile-info p {
             font-size: 0.85rem;
             color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: rgba(184, 224, 210, 0.3);
-            color: #2b7a62;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            margin-top: 0.4rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #2b7a62;
-            border-radius: 50%;
-            animation: pulseDot 2s infinite;
-        }
-
-        @keyframes pulseDot {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        .quote-box {
-            background: rgba(255, 255, 255, 0.6);
-            border-left: 3px solid var(--accent-pink);
-            padding: 0.9rem 1.2rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
         }
 
         /* -------------------------------------------------------------------------- */
-        /* ABOUT SECTION (WHO'S BEHIND THIS?)                                        */
+        /* STRUCTURED LIST SECTIONS                                                   */
         /* -------------------------------------------------------------------------- */
         .section-header {
             text-align: center;
@@ -476,78 +373,93 @@
 
         .section-title {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 800;
             color: var(--text-heading);
         }
 
-        .about-card {
+        /* Clear Structured Lists */
+        .structured-list-card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
-            padding: 3rem;
+            padding: 2.5rem;
             box-shadow: var(--shadow-soft);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: center;
+            margin-bottom: 2rem;
         }
 
-        .about-text p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-        }
-
-        .about-highlights {
+        .feature-list {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
-        .highlight-item {
+        .feature-item {
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            background: rgba(255, 255, 255, 0.6);
             padding: 1rem;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 218, 214, 0.5);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
         }
 
-        .highlight-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+        .feature-bullet {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
             background: var(--badge-bg);
             color: var(--accent-rose);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             flex-shrink: 0;
+            margin-top: 0.2rem;
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* FEATURED CREATION (PROJECT SHOWCASE)                                       */
-        /* -------------------------------------------------------------------------- */
-        .project-showcase {
+        .feature-text h4 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Featured Project Showcase Card */
+        .project-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
             border-radius: 32px;
             padding: 2.5rem;
             box-shadow: var(--shadow-soft);
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-heading);
         }
 
         .project-badge {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
             background: var(--gradient-accent);
             color: white;
             font-size: 0.75rem;
@@ -556,189 +468,75 @@
             border-radius: 20px;
         }
 
-        .project-content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .project-info h3 {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--text-heading);
-            margin-bottom: 0.8rem;
-        }
-
-        .project-tags {
+        /* -------------------------------------------------------------------------- */
+        /* EXPANDABLE MODAL OVERLAY FOR TOP NAV PAGES                                 */
+        /* -------------------------------------------------------------------------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
             display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-pill {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid var(--card-border);
-            padding: 0.35rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        /* Interactive Tabs for How I Built This */
-        .tab-buttons {
-            display: flex;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 0.8rem;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            transition: var(--transition-smooth);
-        }
-
-        .tab-btn.active {
-            color: var(--accent-rose);
-            background: var(--badge-bg);
-        }
-
-        .tab-pane {
-            display: none;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .tab-pane.active {
-            display: block;
-        }
-
-        .project-preview-box {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px dashed var(--accent-pink);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-        }
-
-        /* -------------------------------------------------------------------------- */
-        /* SKILLS DASHBOARD                                                           */
-        /* -------------------------------------------------------------------------- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            padding: 1.8rem;
-            border-radius: 24px;
-            box-shadow: var(--shadow-soft);
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
             transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            max-width: 650px;
+            width: 100%;
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-pink);
+            transform: translateY(20px) scale(0.95);
+            transition: var(--transition-smooth);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
         }
 
-        .skill-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            background: var(--gradient-accent);
-            color: white;
+        .modal-overlay.active .modal-card {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--badge-bg);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: var(--text-heading);
+            cursor: pointer;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-        }
-
-        .skill-title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-heading);
-        }
-
-        .skill-micro-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-rose);
-            background: var(--badge-bg);
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            align-self: flex-start;
-        }
-
-        /* -------------------------------------------------------------------------- */
-        /* CONTACT SECTION (SAY HI!)                                                 */
-        /* -------------------------------------------------------------------------- */
-        .contact-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--card-border);
-            border-radius: 36px;
-            padding: 3.5rem 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pill-selection {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin: 1.8rem 0;
-        }
-
-        .option-pill {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid var(--card-border);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
             transition: var(--transition-smooth);
         }
 
-        .option-pill:hover, .option-pill.active {
-            background: var(--gradient-accent);
+        .modal-close-btn:hover {
+            background: var(--accent-rose);
             color: white;
-            border-color: transparent;
-            transform: scale(1.05);
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* FOOTER                                                                     */
-        /* -------------------------------------------------------------------------- */
+        /* Footer */
         footer {
             text-align: center;
             padding: 2.5rem 0;
@@ -748,71 +546,49 @@
             margin-top: 3rem;
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* RESPONSIVE DESIGN                                                          */
-        /* -------------------------------------------------------------------------- */
         @media (max-width: 868px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-title {
-                font-size: 2.6rem;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .about-card {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: 0.6rem;
-            }
-
-            .nav-link {
-                font-size: 0.8rem;
-                padding: 0.3rem 0.5rem;
-            }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-title { font-size: 2.5rem; }
+            .nav-links { gap: 0.3rem; }
+            .nav-btn { font-size: 0.78rem; padding: 0.4rem 0.6rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Custom Glowing Cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-
-    <!-- Pinterest Style Background Noise & Aura Gradient Mesh -->
-    <div class="bg-mesh-container">
-        <div class="aura-node aura-1"></div>
-        <div class="aura-node aura-2"></div>
-        <div class="aura-node aura-3"></div>
+    <!-- Pinterest Floral Background Container -->
+    <div class="floral-bg-container">
+        <i class="fa-solid fa-seedling flower-icon flower-1"></i>
+        <i class="fa-solid fa-fan flower-icon flower-2"></i>
+        <i class="fa-solid fa-leaf flower-icon flower-3"></i>
+        <i class="fa-solid fa-spa flower-icon flower-4"></i>
     </div>
-    <div class="noise-overlay"></div>
 
-    <!-- Floating Glass Navigation Bar -->
+    <!-- Floating Navigation Bar -->
     <header>
         <nav class="navbar">
             <a href="#home" class="logo">
                 HFS_official
                 <span class="logo-badge">GEN Z</span>
             </a>
+
+            <!-- Expandable Page Nav Buttons -->
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link">The Space ✦</a></li>
-                <li><a href="#about" class="nav-link">Who's Behind This? 🧋</a></li>
-                <li><a href="#projects" class="nav-link">Cool Stuff I Built ⚡</a></li>
-                <li><a href="#contact" class="nav-link">Say Hi! 💌</a></li>
+                <li><button class="nav-btn" onclick="openModal('modal-space')">The Space ✦</button></li>
+                <li><button class="nav-btn" onclick="openModal('modal-about')">Who's Behind This? 🧋</button></li>
+                <li><button class="nav-btn" onclick="openModal('modal-projects')">Cool Stuff I Built ⚡</button></li>
+                <li><button class="nav-btn" onclick="openModal('modal-contact')">Say Hi! 💌</button></li>
             </ul>
+
+            <!-- Professional Theme Switcher -->
+            <div class="theme-switcher">
+                <button class="theme-btn active" id="btn-soft" onclick="setTheme('soft')">Soft Aesthetic 🌸</button>
+                <button class="theme-btn" id="btn-dark" onclick="setTheme('dark')">Minimal Dark ⚡</button>
+            </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
-
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container">
@@ -823,244 +599,259 @@
                             Aesthetic Web Creator
                         </div>
                         <h1 class="hero-title">
-                            Bringing Fresh <span>Gen Z Energy</span> To Web Creation.
+                            Bringing Fresh <span>Gen Z Energy</span> To Web Development.
                         </h1>
                         <p class="hero-description">
-                            Hi! I'm <strong>HFS_official</strong>. I realized our generation needed something different, so I decided to rewrite how web development feels—combining AI power with cute aesthetic designs.
+                            Hi, I'm <strong>HFS_official</strong>. I felt that web creation needed a fresh perspective, combining modern AI tools with cute, clean, and aesthetic visual designs.
                         </p>
-                        <div class="hero-cta">
-                            <a href="#projects" class="btn-primary">
-                                Explore My Work <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a href="#contact" class="btn-secondary">
-                                Let's Chat 💬
-                            </a>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button onclick="openModal('modal-projects')" class="btn-primary">
+                                View Featured Project <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button onclick="openModal('modal-contact')" class="btn-primary" style="background: var(--card-bg); color: var(--text-heading); border: 1px solid var(--card-border);">
+                                Get In Touch 💌
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Profile / Aesthetic Glass Card -->
-                    <div class="hero-card-container">
-                        <div class="hero-glass-card">
-                            <div class="profile-header">
-                                <div class="avatar-box">
-                                    ✨
-                                </div>
-                                <div class="profile-info">
-                                    <h3>HFS_official</h3>
-                                    <p>AI-Driven Web Creator</p>
-                                    <div class="status-badge">
-                                        <span class="status-dot"></span> Available for Web Projects
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quote-box">
-                                "If everything around us is evolving, web development should also get a fresh new vibe!" 🌸
+                    <!-- Profile Glass Card -->
+                    <div class="hero-glass-card">
+                        <div class="profile-header">
+                            <div class="avatar-box">🌸</div>
+                            <div class="profile-info">
+                                <h3>HFS_official</h3>
+                                <p>Web Developer & Designer</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section (Who's Behind This?) -->
-        <section id="about">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">WHO'S BEHIND THIS? 🧋</span>
-                    <h2 class="section-title">A New Way To Build Websites</h2>
-                </div>
-
-                <div class="about-card">
-                    <div class="about-text">
-                        <p>
-                            Main aik nyi web developer hoon aur mera manna hai ke aaj kal ki websites boring nahi honi chahiye. Jab har cheez badal rahi hai, toh web development mein bhi kuch naya aur aesthetic aana chahiye!
-                        </p>
-                        <p>
-                            Main AI tools aur modern prompt workflows ka use karke pixel-perfect, interactive, aur aesthetic websites design karti hoon.
+                        <p style="font-size: 0.95rem; color: var(--text-muted); font-style: italic;">
+                            "Empowering ideas with smart AI workflows, responsive styling, and modern aesthetic layouts."
                         </p>
                     </div>
-
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-icon">⚡</div>
-                            <div>
-                                <h4>Gen Z Aesthetic Focus</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Cute colors, smooth micro-interactions, aur Pinterest-inspired design layout.</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🤖</div>
-                            <div>
-                                <h4>AI-Powered Workflow</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Smart coding execution using cutting-edge AI prompts & developer logic.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section (Cool Stuff I Built ⚡) -->
-        <section id="projects">
+        <!-- Main Structured Overview Section -->
+        <section id="overview">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">COOL STUFF I BUILT ⚡</span>
-                    <h2 class="section-title">Featured Creation</h2>
+                    <span class="section-tag">STRUCTURED OVERVIEW</span>
+                    <h2 class="section-title">Core Skills & Methodology</h2>
                 </div>
 
-                <div class="project-showcase">
-                    <span class="project-badge">FEATURED SITE ✨</span>
-
-                    <div class="project-content-grid">
-                        <div class="project-info">
-                            <h3>Visa Consultant Web Portal</h3>
-                            
-                            <div class="project-tags">
-                                <span class="tech-pill">HTML5</span>
-                                <span class="tech-pill">CSS3</span>
-                                <span class="tech-pill">GitHub Pages</span>
-                                <span class="tech-pill">Client Project</span>
+                <!-- Structured List Cards -->
+                <div class="structured-list-card">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--text-heading);">
+                        <i class="fa-solid fa-layer-group" style="color: var(--accent-rose); margin-right: 0.5rem;"></i>
+                        Technical Skillset (Click Any Nav Link Above To Expand Detailed Modals)
+                    </h3>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-brands fa-html5"></i></div>
+                            <div class="feature-text">
+                                <h4>HTML5 Structure</h4>
+                                <p>Building clean, semantic, and accessible web page foundations.</p>
                             </div>
-
-                            <!-- Interactive Tabs -->
-                            <div class="tab-buttons">
-                                <button class="tab-btn active" onclick="openTab(event, 'tab-overview')">Overview</button>
-                                <button class="tab-btn" onclick="openTab(event, 'tab-built')">How I Built This 💡</button>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-brands fa-css3-alt"></i></div>
+                            <div class="feature-text">
+                                <h4>CSS3 & Aesthetic Styling</h4>
+                                <p>Designing responsive layouts, Pinterest-inspired themes, and smooth animations.</p>
                             </div>
-
-                            <div id="tab-overview" class="tab-pane active">
-                                <p>This is a professional and clean website built for a Visa Consultancy service. It highlights client services, documentation guidelines, and contact details in a simple layout.</p>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-solid fa-robot"></i></div>
+                            <div class="feature-text">
+                                <h4>AI-Assisted Development Workflow</h4>
+                                <p>Leveraging cutting-edge AI prompts to generate pixel-perfect code efficient solutions.</p>
                             </div>
-
-                            <div id="tab-built" class="tab-pane">
-                                <p>Built with clean responsive code, structured navigation, and hosted live directly on GitHub Pages for high performance.</p>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-brands fa-github"></i></div>
+                            <div class="feature-text">
+                                <h4>Git & Live Deployment</h4>
+                                <p>Managing code repositories and deploying live websites directly on GitHub Pages.</p>
                             </div>
+                        </li>
+                    </ul>
+                </div>
 
-                            <div class="project-preview-box" style="margin-top: 1.5rem;">
-                                <p style="font-weight: 600; color: var(--text-heading);">Want to check out the live site?</p>
-                                <a href="https://naeem-shehzad.github.io/naeem-shehzad/" target="_blank" class="btn-primary">
-                                    Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                </a>
-                            </div>
+                <!-- Featured Project Card -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <span class="section-tag">LIVE FEATURED CREATION</span>
+                            <h3 class="project-title">Visa Consultant Web Portal</h3>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">SKILLSET ✦</span>
-                    <h2 class="section-title">My Tech & Design Toolkit</h2>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
-                        <div class="skill-title">HTML5</div>
-                        <span class="skill-micro-badge">Pixel Perfect</span>
+                        <span class="project-badge">VERIFIED LIVE LINK ✨</span>
                     </div>
 
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
-                        <div class="skill-title">CSS3 & Styling</div>
-                        <span class="skill-micro-badge">Aesthetic Magic</span>
-                    </div>
+                    <ul class="feature-list" style="margin-bottom: 1.8rem;">
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-solid fa-circle-info"></i></div>
+                            <div class="feature-text">
+                                <h4>Project Purpose</h4>
+                                <p>A clean, professional client website created for a visa consultancy service to showcase documentation guidelines and contact options.</p>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-bullet"><i class="fa-solid fa-globe"></i></div>
+                            <div class="feature-text">
+                                <h4>Live Hosted Repository Link</h4>
+                                <p>https://naeem-shehzad.github.io/naeem-shehzad/</p>
+                            </div>
+                        </li>
+                    </ul>
 
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
-                        <div class="skill-title">JavaScript</div>
-                        <span class="skill-micro-badge">Interactivity</span>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fa-solid fa-robot"></i></div>
-                        <div class="skill-title">AI Coding Workflow</div>
-                        <span class="skill-micro-badge">Smart Creator</span>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
-                        <div class="skill-title">Git & GitHub</div>
-                        <span class="skill-micro-badge">Web Deployment</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section (Say Hi! 💌) -->
-        <section id="contact">
-            <div class="container">
-                <div class="contact-card">
-                    <span class="section-tag">SAY HI! 💌</span>
-                    <h2 class="section-title" style="margin-bottom: 0.8rem;">Let's Create Something Cute Together</h2>
-                    <p style="color: var(--text-muted);">Select what you'd like to chat about:</p>
-
-                    <div class="pill-selection">
-                        <div class="option-pill active" onclick="selectPill(this)">I need a website for my business 🚀</div>
-                        <div class="option-pill" onclick="selectPill(this)">Just saying hi! ☕</div>
-                        <div class="option-pill" onclick="selectPill(this)">Let me hire you 💼</div>
-                    </div>
-
-                    <a href="mailto:naeemdte12@gmail.com" class="btn-primary" style="margin-top: 1rem;">
-                        Send Me An Email <i class="fa-solid fa-paper-plane"></i>
+                    <a href="https://naeem-shehzad.github.io/naeem-shehzad/" target="_blank" class="btn-primary">
+                        Open Live Visa Consultant Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
             </div>
         </section>
-
     </main>
+
+    <!-- -------------------------------------------------------------------------- -->
+    /* EXPANDABLE MODAL WINDOWS FOR TOP NAV BUTTONS                                 */
+    <!-- -------------------------------------------------------------------------- -->
+
+    <!-- Modal 1: The Space -->
+    <div class="modal-overlay" id="modal-space">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modal-space')"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-tag">THE SPACE ✦</span>
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1rem;">Creative Vision</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-bullet">✨</div>
+                    <div class="feature-text">
+                        <h4>Modern Aesthetic Focus</h4>
+                        <p>Combining visual beauty, pastel floral gradients, and user-friendly web layouts.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-bullet">⚡</div>
+                    <div class="feature-text">
+                        <h4>Fast & Responsive</h4>
+                        <p>Optimized for mobile screens, tablets, and desktop displays seamless performance.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal 2: Who's Behind This? -->
+    <div class="modal-overlay" id="modal-about">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modal-about')"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-tag">WHO'S BEHIND THIS? 🧋</span>
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1rem;">About HFS_official</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
+                I am a web creator who believes web development should evolve alongside modern design trends. By combining smart AI tools with responsive coding principles, I bring creative digital ideas to life.
+            </p>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-bullet">🎯</div>
+                    <div class="feature-text">
+                        <h4>Core Focus</h4>
+                        <p>Aesthetic Web Development, Prompt Engineering, and User Interface Styling.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal 3: Cool Stuff I Built -->
+    <div class="modal-overlay" id="modal-projects">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modal-projects')"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-tag">COOL STUFF I BUILT ⚡</span>
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1rem;">Featured Work Showcase</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
+                Here is the verified link to my live client website:
+            </p>
+            <ul class="feature-list" style="margin-bottom: 1.5rem;">
+                <li class="feature-item">
+                    <div class="feature-bullet">🌐</div>
+                    <div class="feature-text">
+                        <h4>Visa Consultancy Portal</h4>
+                        <p>Live Link: <strong>https://naeem-shehzad.github.io/naeem-shehzad/</strong></p>
+                    </div>
+                </li>
+            </ul>
+            <a href="https://naeem-shehzad.github.io/naeem-shehzad/" target="_blank" class="btn-primary">
+                Visit Project Now <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal 4: Say Hi! -->
+    <div class="modal-overlay" id="modal-contact">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modal-contact')"><i class="fa-solid fa-xmark"></i></button>
+            <span class="section-tag">SAY HI! 💌</span>
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1rem;">Get In Touch</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Interested in working together or discussing a web project? Send me a direct email below:
+            </p>
+            <ul class="feature-list" style="margin-bottom: 1.5rem;">
+                <li class="feature-item">
+                    <div class="feature-bullet">📧</div>
+                    <div class="feature-text">
+                        <h4>Direct Email Address</h4>
+                        <p>naeemdte12@gmail.com</p>
+                    </div>
+                </li>
+            </ul>
+            <a href="mailto:naeemdte12@gmail.com" class="btn-primary">
+                Compose Email <i class="fa-solid fa-paper-plane"></i>
+            </a>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Designed & Built with ❤️ by <strong>HFS_official</strong> &copy; 2026</p>
+            <p>Designed & Developed with ❤️ by <strong>HFS_official</strong> &copy; 2026</p>
         </div>
     </footer>
 
     <!-- Interactive JavaScript -->
     <script>
-        /* Custom Cursor Animation */
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 300, fill: "forwards" });
-        });
-
-        /* Project Tabs Switcher */
-        function openTab(evt, tabName) {
-            let i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-pane");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
+        /* Theme Switcher Logic */
+        function setTheme(theme) {
+            const btnSoft = document.getElementById('btn-soft');
+            const btnDark = document.getElementById('btn-dark');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('theme-dark');
+                btnDark.classList.add('active');
+                btnSoft.classList.remove('active');
+            } else {
+                document.body.classList.remove('theme-dark');
+                btnSoft.classList.add('active');
+                btnDark.classList.remove('active');
             }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
         }
 
-        /* Contact Pill Selection */
-        function selectPill(element) {
-            let pills = document.getElementsByClassName("option-pill");
-            for (let i = 0; i < pills.length; i++) {
-                pills[i].classList.remove("active");
+        /* Modal Overlay Expanders for Top Nav Buttons */
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        /* Close modal on outside click */
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal-overlay');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].classList.remove('active');
+                }
             }
-            element.classList.add("active");
         }
     </script>
 </body>
